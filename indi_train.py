@@ -162,8 +162,8 @@ class TrainEnvironment:
     def step(self,action):
         skip = 1  # half day 
         self.train_index += skip
-        if self.train_index >= self.end_index-6 : 
-            self.train_index = self.end_index-6 
+        if self.train_index >= self.end_index-60 : 
+            self.train_index = self.end_index-60 
         ns = self.get_state()
         if (self.profit_limit*self.cost_price >= self.profit and self.profit > 0) or self.profit <= -(self.profit_limit*self.cost_price) : 
             self.calculate_reward(0)    #close position
