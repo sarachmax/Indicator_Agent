@@ -143,7 +143,7 @@ class TrainEnvironment:
             loss = -self.loss_limit*self.cost_price
         else : 
             loss = -self.loss_limit*self.train_data[self.train_index,59:60]
-        if self.train_index + 1 == self.end_index :
+        if self.train_index + 6 >= self.end_index :
             if self.reward > 0 : 
                 if self.reward <= 0.05*self.train_data[self.train_index,59:60]:
                     self.reward = -1
@@ -162,8 +162,8 @@ class TrainEnvironment:
     def step(self,action):
         skip = 1  # half day 
         self.train_index += skip
-        if self.train_index >= self.end_index-1 : 
-            self.train_index = self.end_index-1 
+        if self.train_index >= self.end_index-6 : 
+            self.train_index = self.end_index-6 
         ns = self.get_state()
         if (self.profit_limit*self.cost_price >= self.profit and self.profit > 0) or self.profit <= -(self.profit_limit*self.cost_price) : 
             self.calculate_reward(0)    #close position
